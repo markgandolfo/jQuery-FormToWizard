@@ -4,7 +4,7 @@
 (function($) {
     $.fn.formToWizard = function(options) {
         options = $.extend({  
-            submitButton : "",
+            submitButton : "Submit",
             validationEnabled : false 
         }, options); 
         
@@ -12,8 +12,8 @@
 
         var steps = $(element).find("fieldset");
         var count = steps.size();
-        var submmitButtonName = "#" + options.submitButton;
-        $(submmitButtonName).hide();
+        var submitButtonName = "#" + options.submitButton;
+        $(submitButtonName).hide();
 
         // 2
         $(element).before("<ul id='steps'></ul>");
@@ -48,7 +48,7 @@
             $("#" + stepName + "Prev").bind("click", function(e) {
                 $("#" + stepName).hide();
                 $("#step" + (i - 1)).show();
-                $(submmitButtonName).hide();
+                $(submitButtonName).hide();
                 selectStep(i - 1);
             });
         }
@@ -72,7 +72,7 @@
               $("#" + stepName).hide();
               $("#step" + (i + 1)).show();
               if (i + 2 == count)
-                  $(submmitButtonName).show();
+                  $(submitButtonName).show();
               selectStep(i + 1);
             });
         }
