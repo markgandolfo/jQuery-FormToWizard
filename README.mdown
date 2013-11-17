@@ -1,9 +1,9 @@
 ## Form to Wizard
 A simple way to create form wizards using the fieldset! 
 
-The [Original Version](http://www.jankoatwarpspeed.com/post/2009/09/28/webform-wizard-jquery.aspx) was created by [Janko Jovanovic](http://www.jankoatwarpspeed.com/). 
-
 ## How to use
+
+### Basic Usage
 
 Create a HTML Form, and separate each 'screen' of fields using a fieldset as below:
 
@@ -18,13 +18,84 @@ Create a HTML Form, and separate each 'screen' of fields using a fieldset as bel
     <fieldset>
         <-- input fields for screen 3-->
     </fieldset>
+    <input type="submit" value="Submit"/>
+</form> 
+```
+
+Next call formToWizard on the form and presto you'll have a wizard with next and back buttons, and even a UL with steps above the form is injected.
+It'll find the submit button if type=submit and hide it on all screens except the last.
+
+```javascript
+$("#SignupForm").formToWizard();
+```
+
+### Change the name of the submit
+If for some reason you don't have a type='submit' input to submit the form, you can override the submit buttons location using the submitButton option like so
+
+```html
+<form id="SignupForm" action="">
+    <fieldset>
+        <-- input fields for screen 1-->
+    </fieldset>
+    <fieldset>
+        <-- input fields for screen 2-->
+    </fieldset>
+    <fieldset>
+        <-- input fields for screen 3-->
+    </fieldset>
+    <button value="Submit" id="myButton"/>
+</form> 
+```
+
+```javascript
+$("#SignupForm").formToWizard({'submitButton':'#myButton'});
+```
+
+### In built Form Validation
+There are many validation libraries out there, but personally I use [jquery-validation](https://github.com/jzaefferer/jquery-validation) but any will do as long as they listen for .validate(); on the input.
+
+By default the validation checking is turned off with Form To Wizard, but can easily be turned on by adding setting an option and adding some love to the form
+
+```html
+<form id="SignupForm" action="">
+    <fieldset>
+        <input type="text" name="myField" validate />
+    </fieldset>
+    <fieldset>
+        <-- input fields for screen 2-->
+    </fieldset>
+    <fieldset>
+        <-- input fields for screen 3-->
+    </fieldset>
 </form> 
 ```
 
 Next call formToWizard on the form and presto you'll have a wizard with next and back buttons, and even a UL with steps above the form is injected. 
 
 ```javascript
-$("#SignupForm").formToWizard();
+$("#SignupForm").formToWizard({'validate':true});
+```
+
+### Hiding the submit button
+You can easily override the submit text by adding an option on invocation. 
+
+```javascript
+$("#SignupForm").formToWizard({'submit':'Hack the mainframe'});
+```
+
+### Call Backs
+There are two callbacks which can be used. They are the next and previous button clicks. To Use:
+
+```javascript
+$("#SignupForm").formToWizard({}, nextCallback, previousCallback);
+
+function nextCallback(that) {
+  console.log('look ma, Im a callback for next')
+}
+
+function previousCallback(that) {
+  console.log('look ma, Im a callback for previous')
+}
 ```
 
 ## Credits

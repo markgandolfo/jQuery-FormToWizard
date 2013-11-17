@@ -1,19 +1,18 @@
 /* Origital created by jankoatwarpspeed.com - http://www.jankoatwarpspeed.com/post/2009/09/28/webform-wizard-jquery.aspx*/
 
 (function($) {
-  $.fn.formToWizard = function(options) {
+  $.fn.formToWizard = function(options, nextCallBack, prevCallback) {
     options = $.extend({  
-      submitButton : "Submit",
-      validationEnabled : false 
+      submitButton : "input[type=submit]",
+      validate : false 
     }, options); 
   
-    var element = this;
+    var element = this,
+        steps = $(element).find("fieldset"),
+        count = steps.size(),
+        submit = $(element).find(options.submitButton);
 
-    var steps = $(element).find("fieldset");
-    var count = steps.size();
-    var submitButtonName = "#" + options.submitButton;
-    $(submitButtonName).hide();
-
+    submit.hide();
     $(element).before("<ul id='steps'></ul>");
 
     steps.each(function(i) {
@@ -45,8 +44,9 @@
       $("#" + stepName + "Prev").bind("click", function(e) {
         $("#" + stepName).hide();
         $("#step" + (i - 1)).show();
-        $(submitButtonName).hide();
+        submit.hide();
         selectStep(i - 1);
+        prevCallback();
       });
     }
 
@@ -55,7 +55,7 @@
       $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Next ></a>");
 
       $("#" + stepName + "Next").bind("click", function(e) {
-        if (options.validationEnabled) { 
+        if (options.validate) { 
           var stepIsValid = true; 
           $("#" + stepName + " :input").each( function(index) { 
             var xy = element.validate().element($(this)); 
@@ -68,9 +68,12 @@
         };
         $("#" + stepName).hide();
         $("#step" + (i + 1)).show();
-        if (i + 2 == count)
-            $(submitButtonName).show();
+        if (i + 2 == count) {
+          submit.show();
+        }
+        
         selectStep(i + 1);
+        nextCallBack();
       });
     }
 
