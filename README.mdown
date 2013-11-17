@@ -76,13 +76,6 @@ Next call formToWizard on the form and presto you'll have a wizard with next and
 $("#SignupForm").formToWizard({'validate':true});
 ```
 
-### Hiding the submit button
-You can easily override the submit text by adding an option on invocation. 
-
-```javascript
-$("#SignupForm").formToWizard({'submit':'Hack the mainframe'});
-```
-
 ### Credits
 * Original created by [jankoatwarpspeed.com](http://www.jankoatwarpspeed.com/post/2009/09/28/webform-wizard-jquery.aspx)
 
