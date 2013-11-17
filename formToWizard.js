@@ -16,8 +16,8 @@
     $(element).before("<ul id='steps'></ul>");
 
     steps.each(function(i) {
-      $(this).wrap("<div id='step" + i + "'></div>");
-      $(this).append("<p id='step" + i + "commands'></p>");
+      $(this).attr('data-step', i);
+      $(this).append("<div id='step" + i + "commands'></div>");
 
       var name = $(this).find("legend").html();
       $("#steps").append("<li id='stepDesc" + i + "'>Step " + (i + 1) + "<span>" + name + "</span></li>");
@@ -27,11 +27,11 @@
         selectStep(i);
       }
       else if (i == count - 1) {
-        $("#step" + i).hide();
+        $("*[data-step=" + i + "]").hide();
         createPrevButton(i);
       }
       else {
-        $("#step" + i).hide();
+        $("*[data-step=" + i + "]").hide();
         createPrevButton(i);
         createNextButton(i);
       }
@@ -42,8 +42,8 @@
       $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Prev' class='prev'>< Back</a>");
 
       $("#" + stepName + "Prev").bind("click", function(e) {
-        $("#" + stepName).hide();
-        $("#step" + (i - 1)).show();
+        $("*[data-step=" + i + "]").hide();
+        $("*[data-step=" + (i-1) + "]").show();
         submit.hide();
         selectStep(i - 1);
       });
@@ -65,8 +65,8 @@
             return false; 
           }; 
         };
-        $("#" + stepName).hide();
-        $("#step" + (i + 1)).show();
+        $("*[data-step=" + i + "]").hide();
+        $("*[data-step=" + (i+1) + "]").show();
         if (i + 2 == count) {
           submit.show();
         }
