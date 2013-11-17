@@ -1,0 +1,32 @@
+## Form to Wizard
+A simple way to create form wizards using the fieldset! 
+
+The [Original Version](http://www.jankoatwarpspeed.com/post/2009/09/28/webform-wizard-jquery.aspx) was created by [Janko Jovanovic](http://www.jankoatwarpspeed.com/). 
+
+## How to use
+
+Create a HTML Form, and separate each 'screen' of fields using a fieldset as below:
+
+```html
+<form id="SignupForm" action="">
+    <fieldset>
+        <-- input fields for screen 1-->
+    </fieldset>
+    <fieldset>
+        <-- input fields for screen 2-->
+    </fieldset>
+    <fieldset>
+        <-- input fields for screen 3-->
+    </fieldset>
+</form> 
+```
+
+Next call formToWizard on the form and presto you'll have a wizard with next and back buttons, and even a UL with steps above the form is injected. 
+
+```javascript
+$("#SignupForm").formToWizard();
+```
+
+## Credits
+* Edited by Gavin Todes
+* Original created by [jankoatwarpspeed.com](http://www.jankoatwarpspeed.com/post/2009/09/28/webform-wizard-jquery.aspx)
