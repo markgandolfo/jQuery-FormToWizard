@@ -83,21 +83,6 @@ You can easily override the submit text by adding an option on invocation.
 $("#SignupForm").formToWizard({'submit':'Hack the mainframe'});
 ```
 
-### Call Backs
-There are two callbacks which can be used. They are the next and previous button clicks. To Use:
-
-```javascript
-$("#SignupForm").formToWizard({}, nextCallback, previousCallback);
-
-function nextCallback(that) {
-  console.log('look ma, Im a callback for next')
-}
-
-function previousCallback(that) {
-  console.log('look ma, Im a callback for previous')
-}
-```
-
 ### Credits
 * Original created by [jankoatwarpspeed.com](http://www.jankoatwarpspeed.com/post/2009/09/28/webform-wizard-jquery.aspx)
 

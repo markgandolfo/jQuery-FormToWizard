@@ -1,10 +1,10 @@
 /* Origital created by jankoatwarpspeed.com - http://www.jankoatwarpspeed.com/post/2009/09/28/webform-wizard-jquery.aspx*/
 
 (function($) {
-  $.fn.formToWizard = function(options, nextCallBack, prevCallback) {
+  $.fn.formToWizard = function(options) {
     options = $.extend({  
-      submitButton : "input[type=submit]",
-      validate : false 
+      submitButton: "input[type=submit]",
+      validate: false
     }, options); 
   
     var element = this,
@@ -46,7 +46,6 @@
         $("#step" + (i - 1)).show();
         submit.hide();
         selectStep(i - 1);
-        prevCallback();
       });
     }
 
@@ -73,7 +72,6 @@
         }
         
         selectStep(i + 1);
-        nextCallBack();
       });
     }
 
